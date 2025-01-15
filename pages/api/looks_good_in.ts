@@ -33,6 +33,11 @@ export default async function handler(
   await runMiddleware(req, res, cors);
 
   // Rest of the API logic
+  const now = new Date();
+
+  // Convert to Pacific Time Zone
+  const pacificTime = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Los_Angeles', year: 'numeric', month: '2-digit', day: '2-digit' }).format(now);
+
   res.json({
     "view": {
       "type": "list",
@@ -41,7 +46,7 @@ export default async function handler(
           "title": "Looks Good In Prod",
           "action": {
             "type": "paste",
-            "value": `This looks good in production as of ${Date.now}`
+            "value": `This looks good in production as of ${pacificTime}`
           }
         }
       ]
