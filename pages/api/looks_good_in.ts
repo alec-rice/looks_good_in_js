@@ -33,5 +33,18 @@ export default async function handler(
   await runMiddleware(req, res, cors);
 
   // Rest of the API logic
-  res.json({ message: "Hello Everyone!" });
+  res.json({
+    "view": {
+      "type": "list",
+      "options": [
+        {
+          "title": "Looks Good In Prod",
+          "action": {
+            "type": "paste",
+            "value": `This looks good in production as of ${Date.now}`
+          }
+        }
+      ]
+    }
+  });
 }
